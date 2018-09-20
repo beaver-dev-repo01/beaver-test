@@ -40,14 +40,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(json());
 
 var db = __require('lib', 'db');
-var redis = __require('redis').createClient(6379, 'beaver-test-redis.m7haae.ng.0001.apn2.cache.amazonaws.com', { no_ready_check: true });
+//var redis = __require('redis').createClient(6379, 'beaver-test-redis.m7haae.ng.0001.apn2.cache.amazonaws.com', { no_ready_check: true });
 
-redis.on('connect', () => {
-  debug('Redis connected');
-});
-redis.on('error', (err) => {
-  debug('Redis connect error ' + err);
-});
+//redis.on('connect', () => {
+//  debug('Redis connected');
+//});
+// redis.on('error', (err) => {
+//   debug('Redis connect error ' + err);
+// });
 
 var fcmPush = __require('fcm-push');
 var FCM_SERVER_KEY = 'AAAA5H-GYoI:APA91bFE-hUsWxTJNpx3gvZ6lY15w63apjRyX_7uN7nT0XTBN9D6p160t961PHhku3-h0kRGzdAWZ7qlP0i1lVGMIMHWKAy1GM0Do_TA0PoI18mIniOXPl86YPAemEluEjkbQQdqX6g-';
@@ -72,7 +72,7 @@ app.use((req, res, next) => {
   res.db = db;
   res.beaver = {
     db: db.beaver,
-    cache: redis,
+    // cache: redis,
     fcm: {
       send: fcmSend
     }
