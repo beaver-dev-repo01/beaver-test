@@ -2,7 +2,7 @@
 
 var debug = __require('debug')(__filename.substring(__dirname.indexOf(__projectRootName)).replace(".js", "").replace(/\\/gi, ":"));
 
-module.exports.getList = (req, res) => {
+module.exports.getList = (req, res, next) => {
   res.beaver.db.test.find({}, (err, data) => {
     if (err) {
       debug('getList() - Failed');
@@ -13,7 +13,9 @@ module.exports.getList = (req, res) => {
     data.forEach((o, i) => {
       l.push({ id: o.id, name: o.name, message: o.message, cts: o.cts, uts: o.uts });
     });
-
-    return l;
+    next(req, res, l);
   });
+  //var l = [];
+  //l.push({ id: 'o.id', name: 'o.name', message: 'o.message', cts: 'o.cts', uts: 'o.uts' });
+  //return l;
 };

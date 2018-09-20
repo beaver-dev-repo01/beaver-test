@@ -1,0 +1,8 @@
+{
+  "name": "beaver-test",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./src/api/bin/api"
+  }
+}
